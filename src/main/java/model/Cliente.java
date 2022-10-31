@@ -10,6 +10,7 @@ package model;
  */
 public class Cliente {
     
+    private int id;
     private String nome;
     private String email;
 
@@ -19,6 +20,12 @@ public class Cliente {
     }
 
     public Cliente() {}    
+
+    public Cliente(int id, String nome, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+    }
     
     public String getNome() {
         return nome;
@@ -34,6 +41,14 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public void setId(int id){
+        this.id=id;
+    }
+
+    public Object getId() {
+        return id;
     }
     
 }

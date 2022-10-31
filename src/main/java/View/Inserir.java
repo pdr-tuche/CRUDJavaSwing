@@ -134,6 +134,10 @@ public class Inserir extends javax.swing.JInternalFrame {
             Logger.getLogger(Inserir.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        campoNome.setText("");
+        campoEmail.setText("");
+        campoNome.requestFocus();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed

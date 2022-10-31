@@ -50,10 +50,11 @@ public class JDBCNewsletter {
             ResultSet response = declaracao.executeQuery(sql);
             
             while(response.next()){
-                String aux1 = response.getString("nome");
-                String aux2 = response.getString("email");
+                int auxint = response.getInt("id");
+                String auxString1 = response.getString("nome");
+                String auxString2 = response.getString("email");
                 
-                Cliente persona = new Cliente (aux1,aux2);
+                Cliente persona = new Cliente (auxint,auxString1,auxString2);
                 clientes.add(persona);
             }
         }catch(SQLException ex){

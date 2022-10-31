@@ -4,6 +4,15 @@
  */
 package View;
 
+import entity.Conexao;
+import entity.JDBCNewsletter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import model.Cliente;
+
 /**
  *
  * @author tucha
@@ -104,6 +113,24 @@ public class Exibir extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Conexao fabrica = new Conexao();
+        JDBCNewsletter gerente = new JDBCNewsletter(fabrica.abrirConexao());
+        ArrayList<Cliente>clientes = gerente.listarClientes();
+        try {
+            fabrica.fecharConexao();
+        } catch (SQLException ex) {
+            Logger.getLogger(Exibir.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //adicionando na tabela
+        DefaultTableModel modelo = (DefaultTableModel)tabela.getModel();
+        modelo.setNumRows(0);
+        
+        for (Cliente c : clientes){
+            Object[] dados = {c.getId(),c.getNome(), c.getEmail()};
+            modelo.addRow(dados);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
