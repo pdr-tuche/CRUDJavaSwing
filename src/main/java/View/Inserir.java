@@ -4,6 +4,13 @@
  */
 package View;
 
+import entity.Conexao;
+import entity.JDBCNewsletter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Cliente;
+
 /**
  *
  * @author tucha
@@ -37,7 +44,24 @@ public class Inserir extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Email");
 
+        campoNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoNomeActionPerformed(evt);
+            }
+        });
+
+        campoEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoEmailActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,6 +117,32 @@ public class Inserir extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String nome = campoNome.getText();
+        String email = campoEmail.getText();
+        
+        Cliente cli = new Cliente(nome,email);
+        
+        Conexao fabrica = new Conexao();
+        JDBCNewsletter gerente  = new JDBCNewsletter(fabrica.abrirConexao());
+        gerente.inserirDados(cli);
+        try {
+            fabrica.fecharConexao();
+        } catch (SQLException ex) {
+            Logger.getLogger(Inserir.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNomeActionPerformed
+
+    private void campoEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoEmailActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

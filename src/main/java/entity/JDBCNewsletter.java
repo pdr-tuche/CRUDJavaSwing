@@ -26,7 +26,7 @@ public class JDBCNewsletter {
     }
 
     public void inserirDados(Cliente pessoa){
-        String sql = "INSERT INTO cliente(nome, email) VALUES (?,?,?)";
+        String sql = "INSERT INTO clientes(nome, email) VALUES (?,?);";
         PreparedStatement ps;
         
         try {
