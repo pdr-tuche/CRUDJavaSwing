@@ -135,6 +135,20 @@ public class Exibir extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        Conexao fabrica = new Conexao();
+        JDBCNewsletter gerente = new JDBCNewsletter(fabrica.abrirConexao());
+        
+        gerente.apagarTudo();
+        try {
+            fabrica.fecharConexao();
+        } catch (SQLException ex) {
+            Logger.getLogger(Exibir.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // apagando da tabela javaswing
+        DefaultTableModel modelo = (DefaultTableModel)tabela.getModel();
+        modelo.setNumRows(0);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
