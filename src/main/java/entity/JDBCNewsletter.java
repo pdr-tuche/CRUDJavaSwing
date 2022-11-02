@@ -74,7 +74,22 @@ public class JDBCNewsletter {
         }catch(SQLException ex){
             ex.printStackTrace();
         }
+    }
+    
+    public void editarDados(Cliente pessoa){
+        String sql = "UPDATE `clientes` SET `nome`='[?]',`email`='[?]' WHERE id = ?";
+        PreparedStatement ps;
         
+        try {
+            ps = this.conexao.prepareStatement(sql);
+            ps.setString(1, pessoa.getNome());
+            ps.setString(2,pessoa.getEmail());
+            ps.setInt(3, (int) pessoa.getId());
+            ps.execute();
+                        
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
     
 }
