@@ -76,14 +76,14 @@ public class JDBCNewsletter {
         }
     }
     
-    public void editarDados(Cliente pessoa){
-        String sql = "UPDATE `clientes` SET `nome`='[?]',`email`='[?]' WHERE id = ?";
+    public void editarDados(Cliente pessoa, String name, String mail){
+        String sql = "UPDATE clientes SET nome= ?, email=? WHERE id = ? ;";
         PreparedStatement ps;
         
         try {
             ps = this.conexao.prepareStatement(sql);
-            ps.setString(1, pessoa.getNome());
-            ps.setString(2,pessoa.getEmail());
+            ps.setString(1, name);
+            ps.setString(2,mail);
             ps.setInt(3, (int) pessoa.getId());
             ps.execute();
                         
