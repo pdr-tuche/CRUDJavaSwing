@@ -40,6 +40,13 @@ public class Exibir extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
+        btnEditar = new javax.swing.JButton();
+        campoEditarNome = new javax.swing.JTextField();
+        campoEditarEmail = new javax.swing.JTextField();
+        btnExcluir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jButton1.setText("Listar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +70,43 @@ public class Exibir extends javax.swing.JInternalFrame {
                 "id", "nome", "email"
             }
         ));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
+        tabela.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tabelaKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
+
+        btnEditar.setText("Atualizar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        campoEditarNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoEditarNomeActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Editar Cadastro");
+
+        jLabel2.setText("nome");
+
+        jLabel3.setText("email");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -71,25 +114,63 @@ public class Exibir extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnEditar)
+                                    .addComponent(campoEditarNome, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoEditarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnExcluir))
+                                .addGap(66, 66, 66))))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(3, 3, 3)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoEditarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoEditarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEditar)
+                    .addComponent(btnExcluir))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,46 +196,121 @@ public class Exibir extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Conexao fabrica = new Conexao();
         JDBCNewsletter gerente = new JDBCNewsletter(fabrica.abrirConexao());
-        ArrayList<Cliente>clientes = gerente.listarClientes();
+        ArrayList<Cliente> clientes = gerente.listarClientes();
         try {
             fabrica.fecharConexao();
         } catch (SQLException ex) {
             Logger.getLogger(Exibir.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         //adicionando na tabela
-        DefaultTableModel modelo = (DefaultTableModel)tabela.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         modelo.setNumRows(0);
-        
-        for (Cliente c : clientes){
-            Object[] dados = {c.getId(),c.getNome(), c.getEmail()};
+
+        for (Cliente c : clientes) {
+            Object[] dados = {c.getId(), c.getNome(), c.getEmail()};
             modelo.addRow(dados);
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Conexao fabrica = new Conexao();
         JDBCNewsletter gerente = new JDBCNewsletter(fabrica.abrirConexao());
-        
+
         gerente.apagarTudo();
         try {
             fabrica.fecharConexao();
         } catch (SQLException ex) {
             Logger.getLogger(Exibir.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         // apagando da tabela javaswing
-        DefaultTableModel modelo = (DefaultTableModel)tabela.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         modelo.setNumRows(0);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+
+        if (tabela.getSelectedRow() != -1) {
+            Cliente cli = new Cliente();
+            cli.setNome(campoEditarNome.getText());
+            cli.setEmail(campoEditarEmail.getText());
+            cli.setId((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+
+            String novoNome = campoEditarNome.getText();
+            String novoEmail = campoEditarEmail.getText();
+
+            Conexao fabrica = new Conexao();
+            JDBCNewsletter gerente = new JDBCNewsletter(fabrica.abrirConexao());
+            gerente.editarDados(cli, novoNome, novoEmail);
+            try {
+                fabrica.fecharConexao();
+            } catch (SQLException ex) {
+                Logger.getLogger(Inserir.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void tabelaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaKeyReleased
+        // TODO add your handling code here:
+        //faz nada
+        //como que tira isso daqui kaskasfk
+    }//GEN-LAST:event_tabelaKeyReleased
+
+    private void campoEditarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEditarNomeActionPerformed
+        // TODO add your handling code here:
+        //faz nada
+    }//GEN-LAST:event_campoEditarNomeActionPerformed
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        // TODO add your handling code here:
+        if (tabela.getSelectedRow() != -1) {
+            campoEditarNome.setText((String) tabela.getValueAt(tabela.getSelectedRow(), 1));
+            campoEditarEmail.setText((String) tabela.getValueAt(tabela.getSelectedRow(), 2));
+        }
+    }//GEN-LAST:event_tabelaMouseClicked
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+
+        Conexao fabrica = new Conexao();
+        Cliente cli = new Cliente();
+        JDBCNewsletter gerente = new JDBCNewsletter(fabrica.abrirConexao());
+        if (tabela.getSelectedRow() != -1) {
+            String nome = campoEditarNome.getText();
+            String email = campoEditarEmail.getText();
+            int id = (int) tabela.getValueAt(tabela.getSelectedRow(), 0);
+            cli = new Cliente(id, nome, email);
+        }
+
+        gerente.apagarEspecifico(cli);
+        try {
+            fabrica.fecharConexao();
+        } catch (SQLException ex) {
+            Logger.getLogger(Exibir.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // apagando da tabela javaswing
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JTextField campoEditarEmail;
+    private javax.swing.JTextField campoEditarNome;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;

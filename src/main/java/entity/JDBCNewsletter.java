@@ -19,77 +19,92 @@ import model.Cliente;
  * @author tucha
  */
 public class JDBCNewsletter {
+
     Connection conexao;
 
     public JDBCNewsletter(Connection conexao) {
         this.conexao = conexao;
     }
 
-    public void inserirDados(Cliente pessoa){
+    public void inserirDados(Cliente pessoa) {
         String sql = "INSERT INTO clientes(nome, email) VALUES (?,?);";
         PreparedStatement ps;
-        
+
         try {
             ps = this.conexao.prepareStatement(sql);
             ps.setString(1, pessoa.getNome());
-            ps.setString(2,pessoa.getEmail());
+            ps.setString(2, pessoa.getEmail());
             ps.execute();
-                        
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
     }
-    
-    public ArrayList<Cliente> listarClientes(){
-        ArrayList<Cliente>clientes = new ArrayList<Cliente>();
+
+    public ArrayList<Cliente> listarClientes() {
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
         String sql = "SELECT * FROM clientes";
-        
-        try{
+
+        try {
             Statement declaracao = conexao.createStatement();
             ResultSet response = declaracao.executeQuery(sql);
-            
-            while(response.next()){
+
+            while (response.next()) {
                 int auxint = response.getInt("id");
                 String auxString1 = response.getString("nome");
                 String auxString2 = response.getString("email");
-                
-                Cliente persona = new Cliente (auxint,auxString1,auxString2);
+
+                Cliente persona = new Cliente(auxint, auxString1, auxString2);
                 clientes.add(persona);
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return clientes;
     }
-    
-    public void apagarTudo(){
+
+    public void apagarTudo() {
         String sql = "DELETE FROM clientes";
-        
+
         PreparedStatement ps;
-        
-        try{
-            ps = this.conexao.prepareStatement(sql);
-            ps.execute();
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
-    }
-    
-    public void editarDados(Cliente pessoa){
-        String sql = "UPDATE `clientes` SET `nome`='[?]',`email`='[?]' WHERE id = ?";
-        PreparedStatement ps;
-        
+
         try {
             ps = this.conexao.prepareStatement(sql);
-            ps.setString(1, pessoa.getNome());
-            ps.setString(2,pessoa.getEmail());
-            ps.setInt(3, (int) pessoa.getId());
             ps.execute();
-                        
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-    
+
+    public void apagarEspecifico(Cliente x) {
+        String sql = "DELETE FROM `clientes` WHERE id = ?";
+
+        PreparedStatement ps;
+
+        try {
+            ps = this.conexao.prepareStatement(sql);
+            ps.setInt(1, (int) x.getId());
+            ps.execute();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void editarDados(Cliente pessoa, String name, String mail) {
+        String sql = "UPDATE clientes SET nome= ?, email=? WHERE id = ? ;";
+        PreparedStatement ps;
+
+        try {
+            ps = this.conexao.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, mail);
+            ps.setInt(3, (int) pessoa.getId());
+            ps.execute();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }
