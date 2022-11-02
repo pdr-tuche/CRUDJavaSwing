@@ -2,7 +2,7 @@
 - Projeto da disciplina de Progamação Orientada a Objetos o qual consiste em uma implementação de um CRUD com interface gráfica utilizando o MySQL com JDBC e o NetBeans.
 
 
-## O que é um CRUD ?
+## O que é um CRUD ? 🤔
 
 >CRUD (Create, Read, Update, Delete) é um acrônimo para as maneiras de se operar em informação armazenada. É um mnemônico para as quatro operações básicas de armazenamento persistente.
 
